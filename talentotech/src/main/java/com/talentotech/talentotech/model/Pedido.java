@@ -1,0 +1,20 @@
+package com.talentotech.talentotech.model;
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
+@Entity
+public class Pedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPedido;
+
+    private String estado;
+
+    @OneToMany
+    private List<DetallePedido> detallePedido;
+}
