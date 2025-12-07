@@ -15,6 +15,8 @@ public class Pedido {
 
     private String estado;
 
-    @OneToMany
-    private List<DetallePedido> detallePedido;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "pedido_id")
+    private List<DetallePedido> detallePedido = new ArrayList<>();
+
 }
