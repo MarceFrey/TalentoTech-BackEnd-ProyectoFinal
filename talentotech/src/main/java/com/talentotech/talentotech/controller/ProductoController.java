@@ -1,6 +1,9 @@
 package com.talentotech.talentotech.controller;
 
+import com.talentotech.talentotech.dto.request.ProductoRequestDTO;
+import com.talentotech.talentotech.dto.response.ProductoResponseDTO;
 import com.talentotech.talentotech.model.Producto;
+import com.talentotech.talentotech.service.IProductoService;
 import com.talentotech.talentotech.service.ProductoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,29 +13,29 @@ import java.util.List;
 @RequestMapping("api/productos")
 public class ProductoController {
 
-    private  ProductoService produService;
+    private  IProductoService produService;
 
-    public ProductoController(ProductoService productService) {
+    public ProductoController(IProductoService productService) {
         this.produService = productService;
     }
 
     @GetMapping
-    public List<Producto> traerProductos(){
+    public List<ProductoResponseDTO> traerProductos(){
         return produService.traerProductos();
     }
 
     @GetMapping("/{id}")
-    public Producto traerProducto(@PathVariable int id){
+    public ProductoResponseDTO traerProducto(@PathVariable int id){
         return produService.traerProducto(id);
     }
 
     @PostMapping
-    public Producto crearProducto(@RequestBody Producto producto){
+    public ProductoResponseDTO crearProducto(@RequestBody ProductoRequestDTO producto){
         return produService.crearProducto(producto);
     }
 
     @PutMapping("/{id}")
-    public Producto editarProducto(@PathVariable int id, @RequestBody Producto producto){
+    public ProductoResponseDTO editarProducto(@PathVariable int id, @RequestBody ProductoRequestDTO producto){
         return produService.editarProducto(id, producto);
     }
 

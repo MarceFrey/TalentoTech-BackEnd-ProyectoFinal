@@ -1,13 +1,15 @@
 package com.talentotech.talentotech.service;
 
+import com.talentotech.talentotech.dto.request.ProductoRequestDTO;
+import com.talentotech.talentotech.dto.response.ProductoResponseDTO;
 import com.talentotech.talentotech.model.Producto;
 
 import java.util.List;
 
 public interface IProductoService {
-    List<Producto> traerProductos();
-    Producto traerProducto(int id);
-    Producto crearProducto(Producto producto);
-    Producto editarProducto(int idProducto, Producto producto);
+    List<ProductoResponseDTO> traerProductos();
+    ProductoResponseDTO traerProducto(int id);
+    ProductoResponseDTO crearProducto(ProductoRequestDTO producto);
+    ProductoResponseDTO editarProducto(int idProducto, ProductoRequestDTO productoDTO);
     void borrarProducto(int id);
 }
