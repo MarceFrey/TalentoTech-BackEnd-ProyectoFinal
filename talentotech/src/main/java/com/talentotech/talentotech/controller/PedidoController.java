@@ -1,37 +1,38 @@
 package com.talentotech.talentotech.controller;
 
-import com.talentotech.talentotech.model.Pedido;
-import com.talentotech.talentotech.service.PedidoService;
+import com.talentotech.talentotech.dto.request.PedidoRequestDTO;
+import com.talentotech.talentotech.dto.response.PedidoResponseDTO;
+import com.talentotech.talentotech.service.IPedidoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/pedido")
+@RequestMapping("/api/pedidos")
 public class PedidoController {
-    private PedidoService pediService;
+    private IPedidoService pediService;
 
-    public PedidoController (PedidoService pediService){
+    public PedidoController (IPedidoService pediService){
         this.pediService = pediService;
     }
 
     @GetMapping
-    public List<Pedido> verPedidos(){
+    public List<PedidoResponseDTO> verPedidos(){
         return pediService.traerPedidos();
     }
 
     @GetMapping("/{id}")
-    public Pedido traerPedido(@PathVariable int id) {
+    public PedidoResponseDTO traerPedido(@PathVariable int id) {
         return pediService.trerPedido(id);
     }
 
     @PostMapping
-    public Pedido crearPedido(@RequestBody Pedido pedido){
+    public PedidoResponseDTO crearPedido(@RequestBody PedidoRequestDTO pedido){
         return pediService.crearPedido(pedido);
     }
 
     @PutMapping("/{id}")
-    public Pedido editarPedido(@PathVariable int id, @RequestBody Pedido nuevoPedido){
+    public PedidoResponseDTO editarPedido(@PathVariable int id, @RequestBody PedidoRequestDTO nuevoPedido){
         return pediService.editarPedido(id , nuevoPedido);
     }
 

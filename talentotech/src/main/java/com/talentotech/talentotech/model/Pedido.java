@@ -11,7 +11,7 @@ import java.util.List;
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPedido;
+    private Integer idPedido;
 
     private String estado;
 
